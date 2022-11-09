@@ -22,7 +22,6 @@
 		d.deptName = rs.getString("deptName");
 		list.add(d);
 	}
-	
 	// 3. 출력(View) -> 모델데이터를 고객이 원하는 형태로 출력 -> 뷰(리포트)
 %>
 <!DOCTYPE html>
@@ -40,11 +39,15 @@
 	</style>
 </head>
 <body class="container text-center">
-	<h1 class="mt-4 p-5 bg-success text-white rounded">부서 목록</h1>
+	<!-- 메뉴 partial jsp 구성 -->
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<h1 class="mt-1 p-3 bg-success text-white rounded">부서 목록</h1>
 	<div class="containerr border">
 		<!-- 부서목록출력(부서번호 내림차순으로) -->
 		<table class ="table table-bordered">
-			<thead class="mt-2 p-3 bg-success text-white">
+			<thead class="mt-1 p-3 bg-success text-white">
 				<tr>
 					<th>부서 번호</th>
 					<th>부서 이름</th>
@@ -59,8 +62,8 @@
 						<tr>
 							<td><%=d.deptNo%></td>
 							<td><%=d.deptName%></td>
-							<td><a class="btn btn-warning btn-outline-dark" href="<%=request.getContextPath()%>/dept/updateDeptForm.jsp?dept_no=<%=d.deptNo%>">수정</a></td>
-							<td><a class="btn btn-danger text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/deleteDept.jsp?dept_no=<%=d.deptNo%>">삭제</a></td>
+							<td><a class="btn btn-warning btn-outline-dark" href="<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a></td>
+							<td><a class="btn btn-danger text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a></td>
 						</tr>
 				<%
 					}
@@ -69,7 +72,7 @@
 		</table>
 	</div>
 	<div>
-		<a style="float: left;" class="btn btn-warning btn-outline-dark" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
+		<a style="float: left;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
 	</div>
 </body>
 </html>

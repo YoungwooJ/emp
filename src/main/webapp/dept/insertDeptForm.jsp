@@ -14,17 +14,32 @@
 	</style>
 </head>
 <body class="container text-center">
-	<h2 class="mt-4 p-5 bg-success text-white rounded">부서를 추가합니다</h2>
+		<!-- 메뉴 partial jsp 구성 -->
+		<!-- jsp: include에서는 절대 주소를 request.getContextPath()로 쓰지 않음 -->
+		<!-- 왜냐하면 html이 요청하는 게 아니고 이 jsp파일 내에서 호출하는 것이기 때문이다. -->
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<h2 class="mt-1 p-3 bg-success text-white rounded">부서를 추가합니다</h2>
+	<!-- msg 파라메타값이 있으면 출력 -->
+	<%
+		String msg = request.getParameter("msg");
+		if(request.getParameter("msg") != null) {
+	%>
+			<div class="text-danger"><%=msg%></div>
+	<%		
+		}
+	%>
 	<form method="post" action="<%=request.getContextPath()%>/dept/insertDeptAction.jsp">
 		<table class ="table table-bordered">
 			<tr>
-				<td>부서 번호</td>
+				<td class="bg-success text-white">부서 번호</td>
 				<td>
 					<input type="text" name="deptNo" value="">
 				</td>
 			</tr>
 			<tr>
-				<td>부서 이름</td>
+				<td class="bg-success text-white">부서 이름</td>
 				<td>
 					<input type="text" name="deptName" value="">
 				</td>

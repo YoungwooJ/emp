@@ -6,7 +6,7 @@
 	//1. 요청 분석(Controller)
 	request.setCharacterEncoding("utf-8");
 	Department dept = new Department();
-	dept.deptNo = request.getParameter("dept_no");
+	dept.deptNo = request.getParameter("deptNo");
 	
 	// 2. 업무 처리(Model) -> 모델데이터(단일값 or 자료구조형태(배열, 리스트, ...))
 	Class.forName("org.mariadb.jdbc.Driver");
