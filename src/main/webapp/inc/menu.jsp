@@ -5,4 +5,5 @@
 			<a class="text-white" style="text-decoration: none; text-align: center;" href="<%=request.getContextPath()%>/dept/deptList.jsp">부서관리</a>
 			<a class="text-white" style="text-decoration: none; text-align: center;" href="<%=request.getContextPath()%>/emp/empList.jsp">사원관리</a>
 			<a class="text-white" style="text-decoration: none; text-align: center;" href="<%=request.getContextPath()%>/emp/empList.jsp">연봉관리</a>
+			<a class="text-white" style="text-decoration: none; text-align: center;" href="<%=request.getContextPath()%>/board/boardList.jsp">게시판관리</a>
 </div>
