@@ -13,7 +13,8 @@
 	System.out.println(deptName);
 	// 안전장치 코드
 	if(deptNo == null || deptName == null || deptNo.equals("") || deptName.equals("")) {
-		response.sendRedirect(request.getContextPath()+"/dept/updateDeptForm.jsp");
+		String msg = URLEncoder.encode("부서이름을 입력하세요.", "utf-8"); // get 방식 주소창에 문자열 인코딩
+		response.sendRedirect(request.getContextPath()+"/dept/updateDeptForm.jsp?msg="+msg+"&deptNo="+deptNo);
 		return;
 	}
 	Department dept = new Department();
