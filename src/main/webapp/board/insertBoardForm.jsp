@@ -3,10 +3,11 @@
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-	<title>insertDeptForm</title>
+	<title>insertBoardForm</title>
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/empStyle.css">
 	<style>
 		table {
 			font-weight: bold;
@@ -18,7 +19,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h2 class="mt-1 p-3 bg-success text-white rounded">게시물을 추가합니다</h2>
+	<h2 class="mt-1 p-3 bg-success text-white rounded">게시물을 등록합니다</h2>
 	<!-- msg 파라메타값이 있으면 출력 -->
 	<%
 		String msg = request.getParameter("msg");
@@ -31,31 +32,34 @@
 	<form method="post" action="<%=request.getContextPath()%>/board/insertBoardAction.jsp">
 		<table class ="table table-bordered">
 			<tr>
-				<td class="bg-success text-white">번호</td>
+				<td style="width: 100px;" class="bg-success text-white">작성자</td>
 				<td>
-					<input type="number" name="boardNo" value="">
+					<input type="text" name="boardWriter" value="" class="box">
 				</td>
-			</tr>
+			</tr>			
 			<tr>
 				<td class="bg-success text-white">제목</td>
 				<td>
-					<input type="text" name="boardTitle" value="">
+					<input type="text" name="boardTitle" value="" class="box">
 				</td>
 			</tr>
 			<tr>
-				<td class="bg-success text-white">내용</td>
+				<td class="bg-success text-white" class="box">내용</td>
 				<td>
-					<textarea rows="5" cols="50" name="boardContent"></textarea>
+					<textarea rows="25" cols="60" name="boardContent" class="box"></textarea>
 				</td>
 			</tr>
 			<tr>
-				<td class="bg-success text-white">글쓴이</td>
+				<td class="bg-success text-white">
+					<div>비밀번호</div>
+				</td>
 				<td>
-					<input type="text" name="boardWriter" value="">
+					<input type="number" name="boardPw" value="1234" readonly="readonly">
 				</td>
 			</tr>
 		</table>
-		<button class="btn btn-warning btn-outline-dark" type="submit">추가</button>
+		<a href="<%=request.getContextPath()%>/board/boardList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
+		<button style="float: right;" class="btn btn-warning btn-outline-dark" type="submit">등록</button>
 	</form>
 </body>
 </html>

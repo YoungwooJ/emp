@@ -45,7 +45,8 @@
 				</td>
 			</tr>
 		</table>
-		<button class="btn btn-warning btn-outline-dark" type="submit">추가</button>
+		<a href="<%=request.getContextPath()%>/dept/deptList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
+		<button class="btn btn-warning btn-outline-dark" type="submit" style="float: right;">추가</button>
 	</form>
 </body>
 </html>

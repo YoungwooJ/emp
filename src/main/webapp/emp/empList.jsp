@@ -65,7 +65,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h1 class="mt-1 p-3 bg-success text-white rounded">사원 목록</h1>
+	<h2 class="mt-1 p-3 bg-success text-white rounded">사원 목록</h2>
 	
 	<!-- 부서별 사원 목록 출력 -->
 	<table class ="table table-bordered">
@@ -94,25 +94,25 @@
 	<!-- 페이징 코드 -->
 	<div>현재 페이지 : <%=currentPage%></div>
 	<div>
-		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1">&lt;처음</a>
+		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">&lt;처음</a>
 		<% 
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-10%>">이전</a>
+				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-10%>" style="text-decoration: none;" class="text-dark">이전</a>
 		<%
 			} 
 			for(int i=currentPage; i<currentPage+10; i++) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=i%>"><%=i%></a>
+				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=i%>" style="text-decoration: none;" class="text-dark"><%=i%></a>
 		<%
 			}
 			if(currentPage < lastPage) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+10%>">다음</a>
+				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+10%>" style="text-decoration: none;" class="text-dark">다음</a>
 		<%
 			}
 		%>
-		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>">마지막&gt;</a>
+		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
 	</div>
 </body>
 </html>

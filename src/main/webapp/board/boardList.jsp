@@ -45,7 +45,7 @@
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-	<title>boardList.jsp</title>
+	<title>boardList</title>
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -61,7 +61,7 @@
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
 	
-	<h1 class="mt-1 p-3 bg-success text-white rounded">자유 게시판</h1>
+	<h2 class="mt-1 p-3 bg-success text-white rounded">자유 게시판</h2>
 	<!-- 3-1. 모델 데이터(ArrayList<Board> 출력 -->
 	<table class ="table table-bordered">
 		<thead class="mt-1 p-3 bg-success text-white">
@@ -89,16 +89,16 @@
 		</tbody>
 	</table>
 	<div>
-		<a style="float: left;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">게시글 작성</a>
+		<a style="float: right;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">게시글 작성</a>
 	</div>
 	<!-- 3-2. 페이징 -->
-	
+	<br><br>
 	<div>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1">처음</a>
+		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">&lt;처음</a>
 		<%
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>">이전</a>
+				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a>
 		<%
 			}
 		%>
@@ -106,11 +106,11 @@
 		<%
 			if(currentPage < lastPage){
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>">다음</a>
+				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a>
 		<%		
 			}
 		%>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>">마지막</a>
+		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
 	</div>
 </body>
 </html>

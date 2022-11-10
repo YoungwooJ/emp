@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*"%>
 <% 
-	//1. 요청 분석(Controller)
+	// 1. 요청 분석(Controller)
 	request.setCharacterEncoding("utf-8");
 	Department dept = new Department();
 	dept.deptNo = request.getParameter("deptNo");

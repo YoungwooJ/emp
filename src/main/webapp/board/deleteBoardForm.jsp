@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*"%>
 <%
-	// 1. 요청 분석(Controller)
+	//1. 요청 분석(Controller)
 	String strBoardNo = request.getParameter("boardNo");
 	// 안전 장치 코드
 	if(strBoardNo == null){
@@ -11,7 +11,7 @@
 		return;
 	}
 	int boardNo = Integer.parseInt(strBoardNo);
-	
+
 	// 2. 업무 처리(Model)
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
@@ -28,22 +28,15 @@
 		board.boardWriter = rs.getString("boardWriter");
 		board.createdate = rs.getString("createdate");
 	}
-	// 3. 출력(View)
-	// 디버깅 코드
-	System.out.println("수정할 번호 : " + board.boardNo);
-	System.out.println("수정할 제목 : " + board.boardTitle);
-	System.out.println("수정할 내용 : " + board.boardContent);
-	System.out.println("수정할 글쓴이 : " + board.boardWriter);
-	System.out.println("수정할 날짜 : " + board.createdate);
+	// 3. 
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-	<title>updateBoardForm</title>
+	<title>deletBoardForm</title>
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/empStyle.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
 		table {
@@ -58,7 +51,7 @@
 	</div>
 	
 	<div>
-		<h2 class="mt-1 p-3 bg-success text-white rounded">게시물을 수정합니다</h2>
+		<h2 class="mt-1 p-3 bg-success text-white rounded">게시물을 삭제합니다</h2>
 	</div>
 	<!-- msg 파라메타값이 있으면 출력 -->
 	<%
@@ -69,35 +62,27 @@
 	<%		
 		}
 	%>
-	<form method="post" action="<%=request.getContextPath()%>/board/updateBoardAction.jsp?boardNo=<%=board.boardNo%>">
-		<table class="table table-bordered">
+	<form method="post" action="<%=request.getContextPath()%>/board/deleteBoardAction.jsp?boardNo=<%=board.boardNo%>">
+		<table class ="table table-bordered">
 			<tr>
 				<td style="width: 100px;" class="bg-success text-white">번호</td>
-				<td>
-					<input type="number" name="boardNo" value="<%=board.boardNo%>" readonly="readonly" class="box">
-				</td>
+				<td><%=board.boardNo%></td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white">작성일</td>
 				<td><%=board.createdate%></td>
-			</tr>			
+			</tr>
 			<tr>
 				<td class="bg-success text-white">작성자</td>
-				<td>
-					<input type="text" name="boardWriter" value="<%=board.boardWriter%>" class="box">
-				</td>
-			</tr>			
+				<td><%=board.boardWriter%></td>
+			</tr>						
 			<tr>
 				<td class="bg-success text-white">제목</td>
-				<td>
-					<input type="text" name="boardTitle" value="<%=board.boardTitle%>" class="box">
-				</td>
+				<td><%=board.boardTitle%></td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white">내용</td>
-				<td>
-					<textarea rows="6" cols="60" name="boardContent" class="box"><%=board.boardContent%></textarea>
-				</td>
+				<td><%=board.boardContent%></td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white">
@@ -109,7 +94,7 @@
 			</tr>
 		</table>
 		<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=board.boardNo%>" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
-		<button class="btn btn-warning btn-outline-dark" type="submit" style="float: right;" >수정</button>
+		<button style="float: right;" class="btn btn-danger btn-outline-dark text-white" type="submit">삭제</button>
 	</form>
 </body>
 </html>

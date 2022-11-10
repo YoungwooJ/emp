@@ -62,7 +62,7 @@
 		<%		
 			}
 		%>
-		<table class ="table table-bordered">
+		<table class="table table-bordered">
 			<tr>
 				<td class="bg-success text-white">부서 번호 </td>
 				<td><input type="text" name="deptNo" value="<%=dept.deptNo%>" readonly = "readonly"></td>
@@ -72,7 +72,8 @@
 				<td><input type="text" name="deptName" value="<%=dept.deptName%>"></td>
 			</tr>
 		</table>
-		<button class="btn btn-warning btn-outline-dark" type="submit">수정</button>
+		<a href="<%=request.getContextPath()%>/dept/deptList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
+		<button class="btn btn-warning btn-outline-dark" type="submit" style="float: right;">수정</button>
 	</form>
 </body>
 </html>

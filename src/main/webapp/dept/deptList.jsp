@@ -43,7 +43,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h1 class="mt-1 p-3 bg-success text-white rounded">부서 목록</h1>
+	<h2 class="mt-1 p-3 bg-success text-white rounded">부서 목록</h2>
 	<div class="containerr border">
 		<!-- 부서목록출력(부서번호 내림차순으로) -->
 		<table class ="table table-bordered">
@@ -72,7 +72,7 @@
 		</table>
 	</div>
 	<div>
-		<a style="float: left;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
+		<a style="float: right;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
 	</div>
 </body>
 </html>
