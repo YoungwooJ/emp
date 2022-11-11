@@ -10,6 +10,7 @@
 		response.sendRedirect(request.getContextPath()+"/board/boardList.jsp");
 		return;
 	}
+	String currentPage = request.getParameter("currentPage");
 	int boardNo = Integer.parseInt(strBoardNo);
 	
 	// 2. 업무 처리(Model)
@@ -43,11 +44,17 @@
 	<title>updateBoardForm</title>
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/empStyle.css">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
 		table {
 			font-weight: bold;
+		}
+		.box:hover {
+		outline: none !important;
+		border-color: rgb(60, 179, 113);
+		box-shadow: 0 0 10px rgb(60, 179, 113);
 		}
 	</style>
 </head>
@@ -104,11 +111,11 @@
 					<div>비밀번호</div>
 				</td>
 				<td>
-					<input type="password" name="boardPw" value="">
+					<input type="password" name="boardPw" value="" class="box">
 				</td>
 			</tr>
 		</table>
-		<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=board.boardNo%>" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
+		<a href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&boardNo=<%=board.boardNo%>" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
 		<button class="btn btn-warning btn-outline-dark" type="submit" style="float: right;" >수정</button>
 	</form>
 </body>

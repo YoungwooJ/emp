@@ -1,0 +1,30 @@
+@charset "UTF-8";
+.box {
+	width: 100%;
+}
+
+.box:hover {
+	outline: none !important;
+	border-color: rgb(60, 179, 113);
+	box-shadow: 0 0 10px rgb(60, 179, 113);
+}
+
+.cmtBox:hover {
+	outline: none !important;
+	border-color: rgb(60, 179, 113);
+	box-shadow: 0 0 10px rgb(60, 179, 113);
+}
+
+.formbox {
+	font-weight: bold;
+	text-align: center;
+}
+
+.title:link, .title:visited {
+	color: black;
+}
+
+.title:hover {
+	color: black;
+	text-decoration: underline;
+}

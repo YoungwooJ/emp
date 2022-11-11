@@ -28,7 +28,7 @@
 	int lastPage = (int)Math.ceil((double)cnt / (double)ROW_PER_PAGE); //마지막 페이지 번호 구하기
 	
 	// 2-2. 페이지당 목록 출력
-	String listSql = "SELECT board_no boardNo, board_title boardTitle FROM board ORDER BY board_no ASC LIMIT ?,?";
+	String listSql = "SELECT board_no boardNo, board_title boardTitle, board_writer boardWriter, createdate FROM board ORDER BY board_no ASC LIMIT ?,?";
 	PreparedStatement listStmt = conn.prepareStatement(listSql);
 	listStmt.setInt(1, beginRow);
 	listStmt.setInt(2, ROW_PER_PAGE);
@@ -38,6 +38,8 @@
 		Board b = new Board();
 		b.boardNo = listRs.getInt("boardNo");
 		b.boardTitle = listRs.getString("boardTitle");
+		b.boardWriter = listRs.getString("boardWriter");
+		b.createdate = listRs.getString("createdate");
 		boardList.add(b);
 	}
 %>
@@ -49,9 +51,14 @@
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<style>
 		table {
 			font-weight: bold;
+		}
+		a {
+			text-decoration: none;
 		}
 	</style>
 </head>
@@ -66,8 +73,10 @@
 	<table class ="table table-bordered">
 		<thead class="mt-1 p-3 bg-success text-white">
 		<tr>
+			<td style="width: 150px">게시물 번호</td>
 			<td>제목</td>
-			<td>내용</td>
+			<td>작성자</td>
+			<td>작성일</td>
 		</tr>
 		</thead>
 		<tbody>
@@ -78,10 +87,12 @@
 					<td><%=b.boardNo%></td>
 					<!-- 제목 클릭시 상세보기 이동 -->
 					<td>
-						<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.boardNo%>">
+						<a class="title" href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&boardNo=<%=b.boardNo%>">
 							<%=b.boardTitle%>
 						</a>
 					</td>
+					<td><%=b.boardWriter%></td>
+					<td><%=b.createdate%></td>					
 				</tr>
 		<%
 			}
