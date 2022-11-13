@@ -9,9 +9,22 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
-	<style>
+	<Style>
+		body {
+				padding:1.5em;
+				background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
 		}
 		.box:hover {
 		outline: none !important;
@@ -25,7 +38,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h2 class="mt-1 p-3 bg-success text-white rounded">게시물을 등록합니다</h2>
+	<h2 class="p-3 bg-success text-white rounded">게시물을 등록합니다</h2>
 	<!-- msg 파라메타값이 있으면 출력 -->
 	<%
 		String msg = request.getParameter("msg");
@@ -40,19 +53,19 @@
 			<tr>
 				<td style="width: 100px;" class="bg-success text-white">작성자</td>
 				<td>
-					<input type="text" name="boardWriter" value="" class="box">
+					<input type="text" name="boardWriter" value="" class="box" placeholder="작성자를 입력해주세요.">
 				</td>
 			</tr>			
 			<tr>
 				<td class="bg-success text-white">제목</td>
 				<td>
-					<input type="text" name="boardTitle" value="" class="box">
+					<input type="text" name="boardTitle" value="" class="box" placeholder="제목을 입력해주세요.">
 				</td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white" class="box">내용</td>
 				<td>
-					<textarea rows="25" cols="60" name="boardContent" class="box"></textarea>
+					<textarea rows="25" cols="60" name="boardContent" class="box" placeholder="내용을 입력해주세요."></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -64,8 +77,8 @@
 				</td>
 			</tr>
 		</table>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
-		<button style="float: right;" class="btn btn-warning btn-outline-dark" type="submit">등록</button>
+		<a href="<%=request.getContextPath()%>/board/boardList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-secondary" >이전</a>
+		<button style="float: right;" class="btn btn-outline-warning" type="submit">등록</button>
 	</form>
 </body>
 </html>

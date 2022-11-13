@@ -26,14 +26,48 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+	<Style>
+		body {
+				padding:1.5em;
+				background: #f5f5f5
+			}
+		table {
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+		outline: none !important;
+		border-color: rgb(60, 179, 113);
+		box-shadow: 0 0 10px rgb(60, 179, 113);
+		}
+		input, textarea{
+		 	display: inline-block;
+			font-size: 15px;
+			border: 0;
+			border-radius: 15px;
+			outline: none;
+			padding-left: 10px;
+			background-color: rgb(233, 233, 233);
+			float: left;
+			width:100%
+		}
+	</Style>
 </head>
-<body class="container">
+<body class="container text-center">
 	<!-- 메뉴 partial jsp 구성 -->
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
 	
-	<h2 class="mt-1 p-3 bg-success text-white rounded">댓글 삭제</h2>
+	<h2 class="p-3 bg-success text-white rounded">댓글 삭제</h2>
 	<!-- msg 파라메타값이 있으면 출력 -->
 	<%
 		String msg = request.getParameter("msg");
@@ -49,15 +83,15 @@
 		<table class="table table-bordered">
 			<tr>
 				<td style="width: 100px;" class="bg-success text-white">번호</td>
-				<td><%=commentNo%></td>
+				<td><span style="float:left;"><%=commentNo%></span></td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white">비밀번호</td>
 				<td><input class="box" type="password" name="commentPw"></td>
 			</tr>
 		</table>
-		<a href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&boardNo=<%=boardNo%>" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
-		<button class="btn btn-danger btn-outline-dark text-white" type="submit" style="float: right;" >삭제</button>
+		<a href="<%=request.getContextPath()%>/board/boardOne.jsp?currentPage=<%=currentPage%>&boardNo=<%=boardNo%>" type="button" style="float: left;" class="btn btn-white btn-outline-secondary" >이전</a>
+		<button class="btn btn-outline-danger" type="submit" style="float: right;" >삭제</button>
 	</form>
 </body>
 </html>

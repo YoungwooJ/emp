@@ -8,8 +8,37 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
+		body {
+				padding:1.5em;
+				background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+		outline: none !important;
+		border-color: rgb(60, 179, 113);
+		box-shadow: 0 0 10px rgb(60, 179, 113);
+		}
+		input, textarea{
+		 	display: inline-block;
+			font-size: 15px;
+			border: 0;
+			border-radius: 15px;
+			outline: none;
+			padding-left: 10px;
+			background-color: rgb(233, 233, 233);
+			float: left;
+			width:100%
 		}
 	</style>
 </head>
@@ -20,7 +49,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h2 class="mt-1 p-3 bg-success text-white rounded">부서를 추가합니다</h2>
+	<h2 class="p-3 bg-success text-white rounded">부서를 추가합니다</h2>
 	<!-- msg 파라메타값이 있으면 출력 -->
 	<%
 		String msg = request.getParameter("msg");
@@ -35,18 +64,18 @@
 			<tr>
 				<td class="bg-success text-white">부서 번호</td>
 				<td>
-					<input type="text" name="deptNo" value="">
+					<input type="text" name="deptNo" value="" placeholder="부서 번호를 입력해주세요.">
 				</td>
 			</tr>
 			<tr>
 				<td class="bg-success text-white">부서 이름</td>
 				<td>
-					<input type="text" name="deptName" value="">
+					<input type="text" name="deptName" value="" placeholder="부서 이름을 입력해주세요.">
 				</td>
 			</tr>
 		</table>
-		<a href="<%=request.getContextPath()%>/dept/deptList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
-		<button class="btn btn-warning btn-outline-dark" type="submit" style="float: right;">추가</button>
+		<a href="<%=request.getContextPath()%>/dept/deptList.jsp" type="button" style="float: left;" class="btn btn-white btn-outline-secondary" >이전</a>
+		<button class="btn btn-outline-info" type="submit" style="float: right;">추가</button>
 	</form>
 </body>
 </html>

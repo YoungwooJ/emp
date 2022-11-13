@@ -79,8 +79,21 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<style>
+		body {
+				padding:1.5em;
+				background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
 		}
 	</style>
 </head>
@@ -90,32 +103,32 @@
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
 	
-	<h2 class="mt-1 p-3 bg-success text-white rounded">자유 게시판</h2>
+	<h2 class="p-3 bg-success text-white rounded">자유 게시판</h2>
 	<table class ="table table-bordered">
 		<tr>
 			<td style="width: 100px;" class="bg-success text-white" class="formbox">번호</td>
-			<td><%=board.boardNo%></td>
+			<td><span style="float:left;"><%=board.boardNo%></span></td>
 		</tr>
 		<tr>
 			<td class="bg-success text-white" class="formbox">작성일</td>
-			<td><%=board.createdate%></td>
+			<td><span style="float:left;"><%=board.createdate%></span></td>
 		</tr>		
 		<tr>
 			<td class="bg-success text-white" class="formbox">작성자</td>
-			<td><%=board.boardWriter%></td>
+			<td><span style="float:left;"><%=board.boardWriter%></span></td>
 		</tr>		
 		<tr>
 			<td class="bg-success text-white" class="formbox">제목</td>
-			<td><%=board.boardTitle%></td>
+			<td><span style="float:left;"><%=board.boardTitle%></span></td>
 		</tr>
 		<tr>
 			<td class="bg-success text-white" class="formbox">내용</td>
-			<td><%=board.boardContent%></td>
+			<td><span style="float:left;"><%=board.boardContent%></span></td>
 		</tr>
 	</table>
-	<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage%>" type="button" style="float: left;" class="btn btn-white btn-outline-dark" >이전</a>
-	<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?currentPage=<%=currentPage%>&boardNo=<%=board.boardNo%>" type="button" style="float: right;"  class="btn btn-danger btn-outline-dark text-white">삭제</a>
-	<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?currentPage=<%=currentPage%>&boardNo=<%=board.boardNo%>" type="button" style="float: right;"  class="btn btn-warning btn-outline-dark">수정</a>
+	<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage%>" type="button" style="float: left;" class="btn btn-white btn-outline-secondary" >이전</a>
+	<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?currentPage=<%=currentPage%>&boardNo=<%=board.boardNo%>" type="button" style="float: right;"  class="btn btn-outline-danger">삭제</a>
+	<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?currentPage=<%=currentPage%>&boardNo=<%=board.boardNo%>" type="button" style="float: right;"  class="btn btn-outline-warning">수정</a>
 
 	<!-- 댓글 게시판 -->
 	<br><br>
@@ -132,7 +145,7 @@
 							<%=c.commentNo%>
 						</td>
 						<td>
-							<%=c.commentContent%>
+							<span style="float:left;"><%=c.commentContent%></span>
 						</td>
 						<td style="width:100px;">
 							<a type="button" class="btn btn-white btn-outline-secondary" href="<%=request.getContextPath()%>/board/deleteCommentForm.jsp?commentNo=<%=c.commentNo%>&currentPage=<%=currentPage%>&boardNo=<%=boardNo%>">

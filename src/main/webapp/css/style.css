@@ -1,4 +1,8 @@
 @charset "UTF-8";
+table{
+	border-radius: 5px;
+}
+
 .box {
 	width: 100%;
 }
@@ -9,10 +13,14 @@
 	box-shadow: 0 0 10px rgb(60, 179, 113);
 }
 
+.cmtBox {
+	width: 100%;
+}
+
 .cmtBox:hover {
 	outline: none !important;
-	border-color: rgb(60, 179, 113);
-	box-shadow: 0 0 10px rgb(60, 179, 113);
+	border-color: rgb(192, 192, 192);
+	box-shadow: 0 0 10px rgb(192, 192, 192);
 }
 
 .formbox {
@@ -25,6 +33,6 @@
 }
 
 .title:hover {
-	color: black;
+	color: rgb(192, 192, 192);
 	text-decoration: underline;
 }

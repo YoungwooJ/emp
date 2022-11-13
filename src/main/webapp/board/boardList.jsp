@@ -54,8 +54,18 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<style>
+		body {
+			padding:1.5em;
+			background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
 		}
 		a {
 			text-decoration: none;
@@ -68,12 +78,12 @@
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
 	
-	<h2 class="mt-1 p-3 bg-success text-white rounded">자유 게시판</h2>
+	<h2 style="float:left">자유 게시판</h2>
 	<!-- 3-1. 모델 데이터(ArrayList<Board> 출력 -->
 	<table class ="table table-bordered">
 		<thead class="mt-1 p-3 bg-success text-white">
 		<tr>
-			<td style="width: 150px">게시물 번호</td>
+			<td style="width: 100px">번호</td>
 			<td>제목</td>
 			<td>작성자</td>
 			<td>작성일</td>
@@ -100,28 +110,28 @@
 		</tbody>
 	</table>
 	<div>
-		<a style="float: right;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">게시글 작성</a>
+		<a style="float: right;" class="btn btn-infomation btn-outline-info" href="<%=request.getContextPath()%>/board/insertBoardForm.jsp">게시글 작성</a>
 	</div>
 	<!-- 3-2. 페이징 -->
 	<br><br>
 	<div>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">&lt;처음</a>
+		<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a>
 		<%
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a>
 		<%
 			}
 		%>
-		<span><%=currentPage%></span>
+		<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
 		<%
 			if(currentPage < lastPage){
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a>
 		<%		
 			}
 		%>
-		<a href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
+		<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a>
 	</div>
 </body>
 </html>

@@ -54,9 +54,40 @@
 	<!-- 부트스트랩5 CDN -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 	<style>
+		body {
+				padding:1.5em;
+				background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+		outline: none !important;
+		border-color: rgb(60, 179, 113);
+		box-shadow: 0 0 10px rgb(60, 179, 113);
+		}
+		input, textarea{
+		 	display: inline-block;
+			font-size: 15px;
+			border: 0;
+			border-radius: 15px;
+			outline: none;
+			padding-left: 10px;
+			background-color: rgb(233, 233, 233);
+			float: left;
+			width:100%
 		}
 	</style>
 </head>
@@ -65,7 +96,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h2 class="mt-1 p-3 bg-success text-white rounded">사원 목록</h2>
+	<h2 style="float:left">사원 목록</h2>
 	
 	<!-- 부서별 사원 목록 출력 -->
 	<table class ="table table-bordered">
@@ -82,7 +113,7 @@
 		%>
 				<tr>
 					<td><%=e.empNo%></td>
-					<td><a href=""><%=e.firstName%></a></td>
+					<td><a class="title" href=""><%=e.firstName%></a></td>
 					<td><%=e.lastName%></td>
 				</tr>
 		<%
@@ -94,25 +125,25 @@
 	<!-- 페이징 코드 -->
 	<div>현재 페이지 : <%=currentPage%></div>
 	<div>
-		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">&lt;처음</a>
+		<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">&lt;처음</a>
 		<% 
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-10%>" style="text-decoration: none;" class="text-dark">이전</a>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-10%>" style="text-decoration: none;" class="text-dark">이전</a>
 		<%
 			} 
 			for(int i=currentPage; i<currentPage+10; i++) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=i%>" style="text-decoration: none;" class="text-dark"><%=i%></a>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=i%>" style="text-decoration: none;" class="text-dark"><%=i%></a>
 		<%
 			}
 			if(currentPage < lastPage) {
 		%>
-				<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+10%>" style="text-decoration: none;" class="text-dark">다음</a>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+10%>" style="text-decoration: none;" class="text-dark">다음</a>
 		<%
 			}
 		%>
-		<a href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
+		<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
 	</div>
 </body>
 </html>

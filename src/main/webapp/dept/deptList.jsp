@@ -33,8 +33,21 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<style>
+		body {
+			padding:1.5em;
+			background: #f5f5f5
+			}
 		table {
-			font-weight: bold;
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
 		}
 	</style>
 </head>
@@ -43,7 +56,7 @@
 	<div>
 		<jsp:include page="/inc/menu.jsp"></jsp:include>
 	</div>
-	<h2 class="mt-1 p-3 bg-success text-white rounded">부서 목록</h2>
+	<h2 style="float:left">부서 목록</h2>
 	<div class="containerr border">
 		<!-- 부서목록출력(부서번호 내림차순으로) -->
 		<table class ="table table-bordered">
@@ -62,8 +75,8 @@
 						<tr>
 							<td><%=d.deptNo%></td>
 							<td><%=d.deptName%></td>
-							<td><a class="btn btn-warning btn-outline-dark" href="<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a></td>
-							<td><a class="btn btn-danger text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a></td>
+							<td><a class="btn btn-outline-warning" href="<%=request.getContextPath()%>/dept/updateDeptForm.jsp?deptNo=<%=d.deptNo%>">수정</a></td>
+							<td><a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/dept/deleteDept.jsp?deptNo=<%=d.deptNo%>">삭제</a></td>
 						</tr>
 				<%
 					}
@@ -72,7 +85,7 @@
 		</table>
 	</div>
 	<div>
-		<a style="float: right;" class="btn btn-primary text-white btn-outline-dark" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
+		<a style="float: right;" class="btn btn-outline-info" href="<%=request.getContextPath()%>/dept/insertDeptForm.jsp">부서추가</a>
 	</div>
 </body>
 </html>
