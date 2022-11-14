@@ -4,6 +4,12 @@
 <%@ page import="vo.*"%>
 <%
 	// 1. 요청 분석(Controller)
+	
+	// 검색
+	request.setCharacterEncoding("utf-8");
+	String search = request.getParameter("search");
+	// 1) search -> null 2) search -> '' or search -> '단어' 2가지 형태로 쿼리가 분기
+	
 	// 페이지 알고리즘
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
@@ -11,13 +17,26 @@
 	}
 	
 	// 2. 업무 처리(Model)
+	
+	//페이지 업무처리
 	int rowPerPage = 10;
 	
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
+	
 	// lastPage 처리
-	String countSql = "SELECT COUNT(*) FROM employees";
-	PreparedStatement countStmt = conn.prepareStatement(countSql);
+	String countSql = null;
+	PreparedStatement countStmt = null;
+	if(search == null || search.equals("")){ // null 이거나 검색 값이 없으면 -> 전체 데이터 개수
+		countSql = "SELECT COUNT(*) FROM employees";
+		countStmt = conn.prepareStatement(countSql);
+	} else {
+		countSql = "SELECT COUNT(*) FROM employees WHERE first_name LIKE ? OR last_name LIKE ?";
+		countStmt = conn.prepareStatement(countSql);
+		countStmt.setString(1, "%"+search+"%");
+		countStmt.setString(2, "%"+search+"%");
+	}
+	
 	ResultSet countRs = countStmt.executeQuery();
 	int count = 0;
 	if(countRs.next()){
@@ -30,10 +49,23 @@
 	}
 	
 	// 한페이지당 출력할 emp목록
-	String empSql = "SELECT emp_no empNo, first_name firstName, last_name lastName FROM employees ORDER BY emp_no ASC Limit ?, ?";
-	PreparedStatement empStmt = conn.prepareStatement(empSql);
-	empStmt.setInt(1, rowPerPage*(currentPage-1));
-	empStmt.setInt(2, rowPerPage);
+	String empSql = null;
+	PreparedStatement empStmt = null;
+	
+	if(search == null || search.equals("")){ // null 이거나 검색 값이 없으면 -> 전체 데이터 개수
+		empSql = "SELECT emp_no empNo, first_name firstName, last_name lastName FROM employees ORDER BY emp_no ASC Limit ?, ?";
+		empStmt = conn.prepareStatement(empSql);
+		empStmt.setInt(1, rowPerPage*(currentPage-1));
+		empStmt.setInt(2, rowPerPage);
+	} else {
+		empSql = "SELECT emp_no empNo, first_name firstName, last_name lastName FROM employees WHERE first_name LIKE ? OR last_name LIKE ? ORDER BY emp_no ASC LIMIT ?, ?";
+		empStmt = conn.prepareStatement(empSql);
+		empStmt.setString(1, "%"+search+"%");
+		empStmt.setString(2, "%"+search+"%");
+		empStmt.setInt(3, rowPerPage * (currentPage - 1));
+		empStmt.setInt(4, rowPerPage);
+	}
+	
 	ResultSet empRs = empStmt.executeQuery();
 	
 	ArrayList<Employee> empList = new ArrayList<Employee>();
@@ -77,17 +109,6 @@
 		outline: none !important;
 		border-color: rgb(60, 179, 113);
 		box-shadow: 0 0 10px rgb(60, 179, 113);
-		}
-		input, textarea{
-		 	display: inline-block;
-			font-size: 15px;
-			border: 0;
-			border-radius: 15px;
-			outline: none;
-			padding-left: 10px;
-			background-color: rgb(233, 233, 233);
-			float: left;
-			width:100%
 		}
 	</style>
 </head>
@@ -145,5 +166,24 @@
 		%>
 		<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막&gt;</a>
 	</div>
+	
+	<!-- 검색창 -->
+	<!-- 즐겨찾기 등에 쓸 주소를 저장하려고 get 방식을 사용해야할 때가 있음 / <a>는 무조건 get 방식 -->
+	<form action="<%=request.getContextPath()%>/emp/empList.jsp" method="post">
+		<label for="search">
+		<%
+			if(search != null){
+		%>
+				<input type="text" name="search" id="search" value="<%=search%>" placeholder="성/이름 검색">
+		<%		
+			} else {
+		%>
+				<input type="text" name="search" id="search" placeholder="성/이름 검색">
+		<%		
+			}
+		%>
+		 </label>
+		<button type="submit" class="btn btn-outline-info">검색</button>
+	</form>
 </body>
 </html>
