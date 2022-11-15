@@ -1,7 +1,7 @@
-<%@page import="javax.print.attribute.standard.PresentationDirection"%>
+<%@ page import="javax.print.attribute.standard.PresentationDirection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="java.util.*" %> <!-- HashMap<키, 값>, ArrayList<요소> -->
+<%@ page import="java.util.*" %> <!-- HashMap<키, 값>, ArrayList<요소> : 컬렉션 -->
 <%
 	// 1) 요청 분석 (Controller)
 	// 페이징 currentPage, ...
@@ -18,7 +18,7 @@
 	// 페이징 rowPerPage, ...
 	final int ROW_PER_PAGE = 10; // 상수 선언 문법 : final로 int 변수를 상수로 만들어준다
 	int beginRow = (currentPage-1)*ROW_PER_PAGE; // ...Limit(beginRow, ROW_PER_PAGE)
-	// db연결 -> 모델생성
+	// db연결 -> 모델생성 // 로그인 유지 보수 편의를 위해 변수 선언
 	String driver = "org.mariadb.jdbc.Driver";
 	String dbUrl = "jdbc:mariadb://localhost:3306/employees";
 	String dbUser = "root";
@@ -149,69 +149,69 @@
 		</tbody>
 	</table>
 	<!-- 페이징 -->
-		<div class="text-center">
-			<%
-				if(searchName == null){			
-			%>
-					<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryList.jsp?currentPage=1">처음</a>
-					<%
-						if(currentPage > 1){
-					%>
-							<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryList.jsp?currentPage=<%=currentPage-1%>">이전</a>
-					<%
-						}
-					%>
-					<span class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></span>
-					<%
-						if(currentPage < lastPage){
-					%>
-							<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage+1%>">다음</a>
-					<%
-						}
-					%>
-					<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=lastPage%>">마지막</a>
-			<% 
-				}else{			
-			%>
-					<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=1&searchName=<%=searchName%>">처음</a>
-					<%
-						if(currentPage > 1){
-					%>
-							<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage-1%>&searchName=<%=searchName%>">이전</a>
-					<%
-						}
-					%>
-					<span class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></span>
-					<%
-						if(currentPage < lastPage){
-					%>
-							<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage+1%>&searchName=<%=searchName%>">다음</a>
-					<%
-						}
-					%>
-					<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=lastPage%>&searchName=<%=searchName%>">마지막</a>
-			<% 
-				}
-			%>
-		</div>
-		
-		<!-- 검색창 -->
-		<!-- 즐겨찾기 등에 쓸 주소를 저장하려고 get 방식을 사용해야할 때가 있음 / <a>는 무조건 get 방식 -->
-		<form action="<%=request.getContextPath()%>/salary/salaryList.jsp" method="post">
-			<label for="searchName">
-			<%
-				if(searchName != null){
-			%>
-					<input type="text" name="searchName" id="searchName" value="<%=searchName%>" placeholder="사원 성/이름 검색">
-			<%
-				} else {
-			%>
-					<input type="text" name="searchName" id="searchName" placeholder="사원 성/이름 검색">
-			<%	
-				}
-			%>
-			 </label>
-			<button type="submit" class="btn btn-outline-info">검색</button>
-		</form>
+	<ul class="pagination justify-content-center">
+		<%
+			if(searchName == null || searchName.equals("")){			
+		%>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryList.jsp?currentPage=1">처음</a></li>
+				<%
+					if(currentPage > 1){
+				%>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryList.jsp?currentPage=<%=currentPage-1%>">이전</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
+				<%
+					if(currentPage < lastPage){
+				%>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage+1%>">다음</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=lastPage%>">마지막</a></li>
+		<% 
+			}else{			
+		%>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=1&searchName=<%=searchName%>">처음</a></li>
+				<%
+					if(currentPage > 1){
+				%>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage-1%>&searchName=<%=searchName%>">이전</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
+				<%
+					if(currentPage < lastPage){
+				%>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=currentPage+1%>&searchName=<%=searchName%>">다음</a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/salary/salaryMapList.jsp?currentPage=<%=lastPage%>&searchName=<%=searchName%>">마지막</a></li>
+		<% 
+			}
+		%>
+	</ul>
+	
+	<!-- 검색창 -->
+	<!-- 즐겨찾기 등에 쓸 주소를 저장하려고 get 방식을 사용해야할 때가 있음 / <a>는 무조건 get 방식 -->
+	<form action="<%=request.getContextPath()%>/salary/salaryList.jsp" method="post">
+		<label for="searchName">
+		<%
+			if(searchName != null){
+		%>
+				<input type="text" name="searchName" id="searchName" value="<%=searchName%>" placeholder="사원 이름 검색">
+		<%
+			} else {
+		%>
+				<input type="text" name="searchName" id="searchName" placeholder="사원 이름 검색">
+		<%	
+			}
+		%>
+		 </label>
+		<button type="submit" class="btn btn-outline-info">검색</button>
+	</form>
 </body>
 </html>

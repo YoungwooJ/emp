@@ -143,54 +143,54 @@
 		%>
 		</tbody>
 	</table>
-	<a style="float: left;" class="btn btn-outline-info" href="<%=request.getContextPath()%>/deptemp/deptEmpList.jsp">사원 상세정보</a>
+	<a style="float: left;" class="btn btn-outline-info" href="<%=request.getContextPath()%>/deptEmp/deptEmpList.jsp">사원 상세정보</a>
 	<br><br>
 	<!-- 페이징 코드 -->
-	<div>
+	<ul class="pagination justify-content-center">
 		<%
 			if(search == null || search.equals("")){
 		%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a></li>
 				<%
 					if(currentPage > 1) {
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a></li>
 				<%
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
 				<%
 					if(currentPage < lastPage){
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a></li>
 				<%		
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a></li>
 		<%		
 			} else { // 검색 값이 있을 때 페이징(계속 값을 넘겨준다)
 		%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1&searchContent=<%=search%>" style="text-decoration: none;" class="text-dark">처음</a>	
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=1&search=<%=search%>" style="text-decoration: none;" class="text-dark">처음</a></li>	
 				<%
 					if(currentPage > 1) {
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-1%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">이전</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage-1%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">이전</a></li>
 				<%
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
 				<%
 					if(currentPage < lastPage){
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+1%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">다음</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=currentPage+1%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">다음</a></li>
 				<%		
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">마지막</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/emp/empList.jsp?currentPage=<%=lastPage%>&search=<%=search%>" style="text-decoration: none;" class="text-dark">마지막</a></li>
 		<%
 			}
 		%>	
-	</div>
+	</ul>
 	
 	<!-- 검색창 -->
 	<!-- 즐겨찾기 등에 쓸 주소를 저장하려고 get 방식을 사용해야할 때가 있음 / <a>는 무조건 get 방식 -->

@@ -142,51 +142,51 @@
 	</div>
 	<!-- 3-2. 페이징 -->
 	<br><br>
-	<div>
+	<ul class="pagination justify-content-center">
 		<%
 			if(searchContent == null || searchContent.equals("")){
 		%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a></li>
 				<%
 					if(currentPage > 1) {
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>" style="text-decoration: none;" class="text-dark">이전</a></li>
 				<%
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
 				<%
 					if(currentPage < lastPage){
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>" style="text-decoration: none;" class="text-dark">다음</a></li>
 				<%		
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a></li>
 		<%		
 			} else { // 검색 값이 있을 때 페이징(계속 값을 넘겨준다)
 		%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">처음</a>	
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">처음</a>	</li>
 				<%
 					if(currentPage > 1) {
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">이전</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage-1%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">이전</a></li>
 				<%
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
+				<li class="page-item"><span class="page-link text-success"><%=currentPage%></span></li>
 				<%
 					if(currentPage < lastPage){
 				%>
-						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">다음</a>
+						<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">다음</a></li>
 				<%		
 					}
 				%>
-				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">마지막</a>
+				<li class="page-item"><a class="page-link text-success" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">마지막</a></li>
 		<%
 			}
 		%>
-	</div>
+	</ul>
 	
 	<!-- 검색창 -->
 	<!-- 즐겨찾기 등에 쓸 주소를 저장하려고 get 방식을 사용해야할 때가 있음 / <a>는 무조건 get 방식 -->
