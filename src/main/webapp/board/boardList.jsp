@@ -144,7 +144,7 @@
 	<br><br>
 	<div>
 		<%
-			if(searchContent == null){
+			if(searchContent == null || searchContent.equals("")){
 		%>
 				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1" style="text-decoration: none;" class="text-dark">처음</a>
 				<%
@@ -164,7 +164,7 @@
 				%>
 				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>" style="text-decoration: none;" class="text-dark">마지막</a>
 		<%		
-			} else {
+			} else { // 검색 값이 있을 때 페이징(계속 값을 넘겨준다)
 		%>
 				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=1&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">처음</a>	
 				<%
@@ -174,6 +174,18 @@
 				<%
 					}
 				%>
+				<a class="btn btn-sm btn-outline-success mr-3"><%=currentPage%></a>
+				<%
+					if(currentPage < lastPage){
+				%>
+						<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=currentPage+1%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">다음</a>
+				<%		
+					}
+				%>
+				<a class="btn btn-sm btn-outline-success mr-3" href="<%=request.getContextPath()%>/board/boardList.jsp?currentPage=<%=lastPage%>&searchContent=<%=searchContent%>" style="text-decoration: none;" class="text-dark">마지막</a>
+		<%
+			}
+		%>
 	</div>
 	
 	<!-- 검색창 -->

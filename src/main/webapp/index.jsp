@@ -20,6 +20,8 @@
 	<ol class="ol">
 		<li><a class="title" style="text-decoration: none; float:left;" href="<%=request.getContextPath()%>/dept/deptList.jsp">부서 관리</a></li>
 		<li><a class="title" style="text-decoration: none; float:left;" href="<%=request.getContextPath()%>/emp/empList.jsp">사원 관리</a></li>
+	<!--<li><a class="title" style="text-decoration: none; float:left;" href="<%=request.getContextPath()%>/deptemp/deptEmpList.jsp">부서별사원관리</a></li>-->
+		<li><a class="title" style="text-decoration: none; float:left;" href="<%=request.getContextPath()%>/salary/salaryList.jsp">연봉 관리</a></li>
 		<li><a class="title" style="text-decoration: none; float:left;" href="<%=request.getContextPath()%>/board/boardList.jsp">게시판 관리</a></li>
 	</ol>
 </body>
