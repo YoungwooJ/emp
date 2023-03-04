@@ -5,6 +5,13 @@
 <%
 	// 1. 요청 분석(Controller)
 	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+	
 	// 검색
 	request.setCharacterEncoding("utf-8");
 	String search = request.getParameter("search");
@@ -72,9 +79,9 @@
 	ArrayList<Employee> empList = new ArrayList<Employee>();
 	while(empRs.next()){
 		Employee e = new Employee();
-		e.empNo = empRs.getInt("empNo");
-		e.firstName = empRs.getString("firstName");
-		e.lastName = empRs.getString("lastName");
+		e.setEmpNo(empRs.getInt("empNo"));
+		e.setFirstName(empRs.getString("firstName"));
+		e.setLastName(empRs.getString("lastName"));
 		empList.add(e);
 	}
 	// 3. 출력(View)
@@ -134,9 +141,9 @@
 			for(Employee e : empList) {
 		%>
 				<tr>
-					<td><%=e.empNo%></td>
-					<td><a class="title" href=""><%=e.firstName%></a></td>
-					<td><%=e.lastName%></td>
+					<td><%=e.getEmpNo()%></td>
+					<td><a class="title" href=""><%=e.getFirstName()%></a></td>
+					<td><%=e.getLastName()%></td>
 				</tr>
 		<%
 			}

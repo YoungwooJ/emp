@@ -5,6 +5,12 @@
 <%	
 	// 1. 요청 분석(Controller)
 	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
 	
 	// 2. 업무 처리(Model) -> 모델데이터(단일값 or 자료구조형태(배열, 리스트, ...))
 	Class.forName("org.mariadb.jdbc.Driver");

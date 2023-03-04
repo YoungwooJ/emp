@@ -4,6 +4,14 @@
 <%@ page import = "java.util.*" %>
 <%
 	// 1. 요청분석(Controller)
+	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+	
 	// 페이징
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
@@ -65,12 +73,12 @@
 	while(rs.next()){
 		Salary s = new Salary();
 		s.emp = new Employee(); // ☆☆☆☆☆ ☆객체에 객체 넣기☆
-		s.emp.empNo = rs.getInt("empNo");
+		s.emp.setEmpNo(rs.getInt("empNo"));
 		s.salary = rs.getInt("salary");
 		s.fromDate = rs.getString("fromDate");
 		s.toDate = rs.getString("toDate");
-		s.emp.firstName = rs.getString("firstName");
-		s.emp.lastName = rs.getString("lastName");
+		s.emp.setFirstName(rs.getString("firstName"));
+		s.emp.setLastName(rs.getString("lastName"));
 		salaryList.add(s);
 	}
 	
@@ -136,8 +144,8 @@
 			for(Salary s : salaryList) {
 		%>
 				<tr>
-					<td><%=s.emp.empNo%></td>
-					<td><%=s.emp.firstName%>&nbsp;<%=s.emp.lastName%></td>
+					<td><%=s.emp.getEmpNo()%></td>
+					<td><%=s.emp.getFirstName()%>&nbsp;<%=s.emp.getLastName()%></td>
 					<td><%=s.salary%></td>
 					<td><%=s.fromDate%></td>
 					<td><%=s.toDate%></td>

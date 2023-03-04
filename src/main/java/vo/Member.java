@@ -1,16 +1,33 @@
 package vo;
 
-// 캡슐화 단계 : public(100% 오픈) > protected(같은 패키지와 상속 관계 오픈) > default(같은 패키지) > private(this 오픈)
-// protected, default 단계의 캡슐화는 입문자는 사용하지 않는다.
-// @Date : getter와 setter를 만드는 법
-// vo를 만들 때 전부 private로 정보은닉하고 public으로 getter setter를 만든다.
-public class Employee {
+public class Member {
+	private String memberId;
+	private String memberPw;
+	private String memberName;
 	private int empNo;
-	private String birthDate; // protected String birthDate;, String birthDate;, private String birthDate;
+	private String birthDate;
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private String hireDate;
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberPw() {
+		return memberPw;
+	}
+	public void setMemberPw(String memberPw) {
+		this.memberPw = memberPw;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 	public int getEmpNo() {
 		return empNo;
 	}
@@ -46,5 +63,6 @@ public class Employee {
 	}
 	public void setHireDate(String hireDate) {
 		this.hireDate = hireDate;
-	} 
+	}
+	
 }

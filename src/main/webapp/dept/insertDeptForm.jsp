@@ -1,4 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	// 1. 요청 분석(Controller)
+	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>

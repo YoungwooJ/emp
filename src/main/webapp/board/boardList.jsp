@@ -4,6 +4,14 @@
 <%@ page import="vo.*" %>
 <%
 	// 1. 요청분석
+	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+	
 	// 페이징
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){

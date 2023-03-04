@@ -4,6 +4,14 @@
 <%@ page import="vo.*" %>
 <%
 	// 1. 요청분석(Controller)
+	
+	// session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+	
 	// 페이징
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
@@ -69,9 +77,9 @@
 	while(rs.next()){
 		DeptEmp de = new DeptEmp();
 		de.emp = new Employee();
-		de.emp.empNo = rs.getInt("empNo");
-		de.emp.firstName = rs.getString("firstName");
-		de.emp.lastName = rs.getString("lastName");
+		de.emp.setEmpNo(rs.getInt("empNo"));
+		de.emp.setFirstName(rs.getString("firstName"));
+		de.emp.setLastName(rs.getString("lastName"));
 		de.fromDate = rs.getString("fromDate");
 		de.toDate = rs.getString("toDate");
 		de.dept = new Department();
@@ -141,9 +149,9 @@
 			for(DeptEmp de : list) {
 		%>
 				<tr>
-					<td><%=de.emp.empNo%></td>
+					<td><%=de.emp.getEmpNo()%></td>
 					<td><%=de.dept.deptName%></td>
-					<td><%=de.emp.firstName%>&nbsp;<%=de.emp.lastName%></td>
+					<td><%=de.emp.getFirstName()%>&nbsp;<%=de.emp.getLastName()%></td>
 					<td><%=de.fromDate%></td>
 					<td><%=de.toDate%></td>
 				</tr>

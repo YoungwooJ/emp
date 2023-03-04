@@ -4,6 +4,14 @@
 <%@ page import="java.util.*" %> <!-- HashMap<키, 값>, ArrayList<요소> : 컬렉션 -->
 <%
 	// 1) 요청 분석 (Controller)
+	
+	//session 유효성 검증 코드 후 필요하다면 redirect!
+	if(session.getAttribute("loginEmp") == null){
+		// 로그인이 안 된 상태
+		response.sendRedirect(request.getContextPath()+"/member/loginForm.jsp");
+		return;
+	}
+
 	// 페이징 currentPage, ...
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
